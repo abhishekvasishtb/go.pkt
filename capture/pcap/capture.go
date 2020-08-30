@@ -48,6 +48,26 @@ type Handle struct {
     pcap   *C.pcap_t
 }
 
+type Stats struct {                                                                                                                                  
+    PacketsReceived  int                                                                                                                                   
+    PacketsDropped   int                                                                                                                                   
+    PacketsIfDropped int                                                                                                                                   
+}                                                                                                                                                          
+                                                                                                                                                                                                                                                                                                            
+// Stats returns statistics on the underlying pcap handle.                                                                                                 
+func (p *Handle)Stats (stat *Stats, err string) {                                                                                               
+    var cstats C.struct_pcap_stat                                                                                                                          
+                                                                                                                                                  
+    if C.pcap_stats(p.pcap, &cstats) < 0 {                                                                                  
+        return nil, "FAILED"                                                                                                                               
+    }                                                                                                                                                      
+    return &Stats{                                                                                                                                   
+        PacketsReceived:  int(cstats.ps_recv),                                                                                                             
+        PacketsDropped:   int(cstats.ps_drop),                                                                                                             
+        PacketsIfDropped: int(cstats.ps_ifdrop),                                                                                                           
+    }, ""                                                                                                                                                  
+} 
+
 // Create a new capture handle from the given network interface. Noe that this
 // may require root privileges.
 func Open(dev_name string) (*Handle, error) {
