@@ -1,4 +1,4 @@
-/*
+o/*
  * Network packet analysis framework.
  *
  * Copyright (c) 2014, Alessandro Ghedini
@@ -32,8 +32,8 @@
 // implementations ("pcap", "file", ...) are provided as subpackages.
 package capture
 
-import "github.com/ghedo/go.pkt/filter"
-import "github.com/ghedo/go.pkt/packet"
+import "github.com/abhishekvasishtb/go.pkt/filter"
+import "github.com/abhishekvasishtb/go.pkt/packet"
 
 type Handle interface {
     LinkType() packet.Type
