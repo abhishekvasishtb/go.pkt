@@ -1,4 +1,4 @@
-o/*
+/*
  * Network packet analysis framework.
  *
  * Copyright (c) 2014, Alessandro Ghedini
