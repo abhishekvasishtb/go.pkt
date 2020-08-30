@@ -55,7 +55,7 @@ type Stats struct {
 }                                                                                                                                                          
                                                                                                                                                                                                                                                                                                             
 // Stats returns statistics on the underlying pcap handle.                                                                                                 
-func (p *Handle)Stats (stat *Stats, err string) {                                                                                               
+func (p *Handle)Stats() (stat *Stats, err string) {                                                                                               
     var cstats C.struct_pcap_stat                                                                                                                          
                                                                                                                                                   
     if C.pcap_stats(p.pcap, &cstats) < 0 {                                                                                  
