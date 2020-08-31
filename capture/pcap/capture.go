@@ -89,6 +89,15 @@ func Open(dev_name string) (*Handle, error) {
     return handle, nil
 }
 
+func (p *Handle)SetBufSize(buf_size int) error {
+	// Set a higher buffer size
+	err := C.pcap_set_buffer_size(handle.pcap, buf_size)
+    if err < 0 {
+        return fmt.Errorf("Could not set buf size")
+    }
+	return nil
+}
+
 // Return the link type of the capture handle (that is, the type of packets that
 // come out of the packet source).
 func (h *Handle) LinkType() packet.Type {

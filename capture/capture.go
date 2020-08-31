@@ -41,7 +41,7 @@ type Handle interface {
     SetMTU(mtu int) error
     SetPromiscMode(promisc bool) error
     SetMonitorMode(monitor bool) error
-
+	SetBufSize(buf_size int) error
     ApplyFilter(filter *filter.Filter) error
 
     Activate() error
