@@ -90,8 +90,7 @@ func Open(dev_name string) (*Handle, error) {
 }
 
 func (p *Handle)SetBufSize(buf_size int) error {
-	var bufSize C.int
-	bufSize = buf_size
+	bufSize := C.int(buf_size)
 	// Set a higher buffer size
 	err := C.pcap_set_buffer_size(p.pcap, bufSize)
     if err < 0 {
